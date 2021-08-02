@@ -1,0 +1,104 @@
+1. Apache : Install apache on VM, configure it for multiple virtual hosts, configure SSL .
+
+yum update -y
+
+yum install httpd
+
+pwd
+/var/www/html/login.vertoz.com
+create index.html
+
+index.html
+<h1>vertoz.com</h1>
+
+pwd
+/var/www/html/site1
+create index.html
+
+index.html
+<h1>this is site1</h1>
+-------------------------------------------
+create dir sites-available  sites-enabled
+/etc/httpd/sites-available
+
+
+download mod_ssl package and openssl packages
+yum install mod_ssl
+yum install openssl
+
+
+add firewall
+
+firewall-cmd --permanant --add-service=https
+firewall-cmd reload
+
+copy server.crt to /etc/pki/tls/certs/server.crt
+copy private/server.key to /etc/pki/tls/private/server.key
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key
+-out server.crt
+
+
+create config files for every-site in sites-available  sites-enabled
+login.vertoz.com.com.conf
+
+<virtualhost *:80>
+   servername www.login.vertoz.com.com
+   serveralias login.vertoz.com.com
+   documentroot /var/www/html/login.vertoz.com/
+   errorlog /var/www/html/login.vertoz.com/error.log
+   customlog /var/www/html/login.vertoz.com/requests.log combined
+</virtualhost>
+<virtualhost *:443>
+   servername www.login.vertoz.com.com
+   serveralias login.vertoz.com.com
+   documentroot /var/www/html/login.vertoz.com/
+   errorlog /var/www/html/login.vertoz.com/error.log
+   customlog /var/www/html/login.vertoz.com/requests.log combined
+   sslengine on
+   sslcertificatefile /etc/pki/tls/certs/server.crt
+   sslcertificatekeyfile /etc/pki/tls/private/server.key
+</virtualhost>
+
+===================================
+site1.com.conf
+
+<virtualhost *:443>
+   servername www.site1.com
+   serveralias site1.com
+   documentroot /var/www/html/site1/
+   errorlog /var/www/html/site1/error.log
+   customlog /var/www/html/site1/requests.log combined
+   sslengine on
+   sslcertificatefile /etc/pki/tls/certs/server.crt
+   sslcertificatekeyfile /etc/pki/tls/private/server.key
+</virtualhost>
+
+service httpd restart
+setenforce 0
+
+change selinux variable permissive
+
+
+check from browser
+publicip/site1/
+publicip/login.vertoz/
+=======================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

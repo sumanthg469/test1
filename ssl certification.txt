@@ -1,0 +1,115 @@
+ cd /var/www/html/
+mkdir site1 site2
+
+===========
+sudo chown apache:apache -R site1
+sudo chown apache:apache -R site2
+ vi site1/index.html
+this is site-1
+
+
+ vi site2/index.html
+this is site-2
+
+cd /etc/httpd
+
+mkdir sites-available
+mkdir sites-enabled
+
+vi conf/httpd.conf
+
+IncludeOptional sites-enabled/*.conf
+
+cd /etc/httpd/sites-available
+vi site1.com.conf
+<VirtualHost *:80>
+    ServerName www.site1.com
+    ServerAlias site1.com
+    DocumentRoot /var/www/html/site1/
+    CustomLog /var/www/html/site1/requests.log combined
+</VirtualHost>
+
+cp site1.com.conf site2.com.conf
+
+vim site2.com.conf
+<VirtualHost *:80>
+    ServerName www.site2.com
+    ServerAlias site2.com
+    DocumentRoot /var/www/html/site2/
+    CustomLog /var/www/html/site2/requests.log combined
+</VirtualHost>
+
+
+cd /etc
+ln -s /etc/httpd/sites-available/site1.com.conf /etc/httpd
+/sites-enabled/site1.com.conf
+
+ln -s /etc/httpd/sites-available/site2.com.conf /etc/httpd
+//sites-enabled/site2.com.conf
+
+cd /etc/httpd/sites-available
+
+service httpd restart
+error
+setenforce 0
+
+service httpd restart
+restarted
+
+from google:site1.com
+from google site2.com
+
+===========================================================================================================
+
+yum install mod_ssl
+
+yum install openssl
+
+cd /etc/httpd/conf.d/
+vim webserver.conf
+
+<virtualhost *:443>
+servername www.gaurav.com
+serveradmin root@172.25.1.30
+documentroot /var/www/html
+ssllengine on
+sslcertificatefile /etc/pki/tls/certs/server.crt
+sslcertificatekeyfile /etc/pki/tls/private/server.key
+</virtualhost>
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key
+ -out server.crt
+IN
+
+mv server.crt /etc/pki/tls/certs/
+mv server.key /etc/pki/tls/private/
+
+cd /etc/hosts
+
+172.25.1.30 server
+ifconfig
+vim /etc/hosts
+172.25.1.30 www.gaurav.com
+systemctl start httpd
+httpd -t
+syntax ok
+
+firewall-cmd --permanent --add-service=https
+sucess
+
+firewall-cmd --reload
+sucess
+
+logout
+
+
+
+
+
+
+
+
+
+
+
+

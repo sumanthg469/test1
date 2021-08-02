@@ -1,0 +1,83 @@
+<VirtualHost *:80>
+ServerName example.vertoz.com
+ RewriteEngine On
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
+ErrorLog  /var/log/httpd/example.vertoz.com-error.log
+CustomLog /var/log/httpd/example.vertoz.com-access.log combined
+</VirtualHost>
+
+<VirtualHost *:443>
+ ServerName example.vertoz.com
+ SSLEngine on
+ SSLCertificateFile /etc/httpd/ssl/star_vertoz_com.crt
+ SSLCertificateKeyFile /etc/httpd/ssl/private/star_vertoz_com.key
+ SSLCertificateChainFile /etc/httpd/ssl/vertoz-bundle.crt
+
+Alias "/asset" "/var/www/asset"
+ DocumentRoot "/var/www/white-labels-console/"
+ <Directory "/var/www/white-labels-login/">
+  Options +Indexes +FollowSymLinks +MultiViews
+  AllowOverride All
+  Order allow,deny
+  Allow from all
+ </Directory>
+
+
+<Directory "/var/www/asset">
+Options -Indexes +FollowSymLinks +MultiViews
+AllowOverride All
+Order allow,deny
+Allow from all
+</Directory>
+ ErrorLog  /var/log/httpd/example.vertoz.com_443-error.log
+ CustomLog /var/log/httpd/example.vertoz.com_443-access.log combined
+</VirtualHost>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<VirtualHost *:443>
+ ServerName login.vertoz.com
+ SSLEngine on
+ SSLCertificateFile /etc/httpd/ssl/star_vertoz_com.crt
+ SSLCertificateKeyFile /etc/httpd/ssl/private/star_vertoz_com.key
+ SSLCertificateChainFile /etc/httpd/ssl/vertoz-bundle.crt
+
+Alias "/asset" "/var/www/asset"
+ DocumentRoot "/var/www/white-labels-console/"
+ <Directory "/var/www/white-labels-login/">
+  Options +Indexes +FollowSymLinks +MultiViews
+  AllowOverride All
+  Order allow,deny
+  Allow from all
+ </Directory>
+
+
+<Directory "/var/www/asset">
+Options -Indexes +FollowSymLinks +MultiViews
+AllowOverride All
+Order allow,deny
+Allow from all
+</Directory>
+ ErrorLog  /var/log/httpd/example.vertoz.com_443-error.log
+ CustomLog /var/log/httpd/example.vertoz.com_443-access.log combined
+</VirtualHost>

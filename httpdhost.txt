@@ -1,0 +1,369 @@
+<VirtualHost *:80>
+
+   
+    ServerName www.site1.com
+    ServerAlias site1.com
+    DocumentRoot /var/www/html/site1/
+    ErrorLog /var/www/html/site1/error.log
+    CustomLog /var/www/html/site1/requests.log combined
+</VirtualHost>
+======================
+
+<VirtualHost *:80>
+
+   
+    ServerName www.vertoz.com
+    ServerAlias vertoz.com
+    DocumentRoot /var/www/html/vertoz/
+    ErrorLog /var/www/html/vertoz/error.log
+    CustomLog /var/www/html/vertoz/requests.log combined
+</VirtualHost>
+
+=======================
+
+<VirtualHost *:80>
+    ServerName www.YOURDOMAIN.COM
+    ServerAlias YOURDOMAIN.COM
+    DocumentRoot /var/www/YOURDOMAIN.COM/public_html
+    ErrorLog /var/www/YOURDOMAIN.COM/error.log
+    CustomLog /var/www/YOURDOMAIN.COM/requests.log combined
+
+</VirtualHost>
+=================
+
+
+
+<VirtualHost *:80>
+
+
+    ServerName www.login.vertoz.com
+    ServerAlias login.vertoz.com
+    DocumentRoot /var/www/html/login.vertoz.com/
+    ErrorLog /var/www/html/login.vertoz.com/error.log
+    CustomLog /var/www/html/login.vertoz.com/requests.log combined
+</VirtualHost>
+
+
+
+
+
+cp site1.com.conf site2.com.conf
+
+
+
+ln -s /etc/httpd/sites-available/site1.com.conf /etc/httpd/sites.enable/site1.com.conf
+
+sudo setenforce 0
+
+
+cd /var/www/html/
+mkdir site1
+mkdir site2
+vi site1/index.html
+vi site2/index.html
+cd /etc/httpd
+mkdir sites-available
+mkdir sites-enabled
+
+vi conf/httpd.conf
+IncludeOptional sites-enabled/*.conf
+
+
+
+cd sites-available/
+vi site1.com.conf
+<VirtualHost *:80>
+
+   
+    ServerName www.site1.comi
+    ServerAlias site1.com
+    DocumentRoot /var/www/html/site1/
+    ErrorLog /var/www/html/site1/error.log
+    CustomLog /var/www/html/site1/requests.log combined
+</VirtualHost>
+<VirtualHost *:80>
+
+   
+    ServerName www.site2.com
+    ServerAlias site2.com
+    DocumentRoot /var/www/html/site2/
+    ErrorLog /var/www/html/site2/error.log
+    CustomLog /var/www/html/site2/requests.log combined
+</VirtualHost>
+
+cd sites-available/
+vi site1.com.conf
+<VirtualHost *:80>
+
+   
+    ServerName www.site.com
+    ServerAlias site.com
+    DocumentRoot /var/www/html/site1/
+    ErrorLog /var/www/html/site2/error.log
+    CustomLog /var/www/html/site2/requests.log combined
+</VirtualHost>
+
+
+
+
+curl ifconfig.co
+
+========================================================================================================
+yum install httpd
+
+cd /etc/httpd/conf.d
+/conf.d---vim webserver.conf
+<virtualhost *:443>
+servername www.gaurav.com
+serveradmin  root@172.25.1.30
+documentroot /var/www/html
+sslengine on
+sslcertificatefile  /etc/pki/tls/certs/server.crt
+sslcertificatekeyfile  /etc/pki/tls/private/server.key
+</virtualhost>
+
+yum install mod_ssl
+
+
+yum install openssl
+
+
+cd /etc/httpd/conf.d
+vim webserver.conf
+<virtualhost *:443>
+servername www.gaurav.com
+serveradmin root@ip
+documentroot /var/www/html
+sslengine on
+sslcertificatefile /etc/pki/tls/certs/server.crt
+sslcertificatekeyfile /etc/pki/tls/private/server.key
+</virtualhost>
+
+
+
+===============================================
+<VirtualHost *:80>
+
+   
+    ServerName www.site1.com
+    ServerAlias site1.com
+    DocumentRoot /var/www/html/site1/
+    ErrorLog /var/www/html/site1/error.log
+    CustomLog /var/www/html/site1/requests.log combined
+</VirtualHost>
+======================
+
+<VirtualHost *:80>
+
+   
+    ServerName www.vertoz.com
+    ServerAlias vertoz.com
+    DocumentRoot /var/www/html/vertoz/
+    ErrorLog /var/www/html/vertoz/error.log
+    CustomLog /var/www/html/vertoz/requests.log combined
+</VirtualHost>
+
+=======================
+
+<VirtualHost *:80>
+    ServerName www.YOURDOMAIN.COM
+    ServerAlias YOURDOMAIN.COM
+    DocumentRoot /var/www/YOURDOMAIN.COM/public_html
+    ErrorLog /var/www/YOURDOMAIN.COM/error.log
+    CustomLog /var/www/YOURDOMAIN.COM/requests.log combined
+
+</VirtualHost>
+=================
+
+
+
+<VirtualHost *:80>
+
+
+    ServerName www.login.vertoz.com
+    ServerAlias login.vertoz.com
+    DocumentRoot /var/www/html/login.vertoz.com/
+    ErrorLog /var/www/html/login.vertoz.com/error.log
+    CustomLog /var/www/html/login.vertoz.com/requests.log combined
+</VirtualHost>
+
+
+
+
+
+cp site1.com.conf site2.com.conf
+
+
+
+ln -s /etc/httpd/sites-available/site1.com.conf /etc/httpd/sites.enable/site1.com.conf
+
+sudo setenforce 0
+
+
+cd /var/www/html/
+mkdir site1
+mkdir site2
+vi site1/index.html
+vi site2/index.html
+cd /etc/httpd
+mkdir sites-available
+mkdir sites-enabled
+
+vi conf/httpd.conf
+IncludeOptional sites-enabled/*.conf
+
+
+
+cd sites-available/
+vi site1.com.conf
+<VirtualHost *:80>
+
+   
+    ServerName www.site1.comi
+    ServerAlias site1.com
+    DocumentRoot /var/www/html/site1/
+    ErrorLog /var/www/html/site1/error.log
+    CustomLog /var/www/html/site1/requests.log combined
+</VirtualHost>
+<VirtualHost *:80>
+
+   
+    ServerName www.site2.com
+    ServerAlias site2.com
+    DocumentRoot /var/www/html/site2/
+    ErrorLog /var/www/html/site2/error.log
+    CustomLog /var/www/html/site2/requests.log combined
+</VirtualHost>
+
+cd sites-available/
+vi site1.com.conf
+<VirtualHost *:80>
+
+   
+    ServerName www.site.com
+    ServerAlias site.com
+    DocumentRoot /var/www/html/site1/
+    ErrorLog /var/www/html/site2/error.log
+    CustomLog /var/www/html/site2/requests.log combined
+</VirtualHost>
+
+
+
+
+curl ifconfig.co
+
+========================================================================================================
+yum install httpd
+
+cd /etc/httpd/conf.d
+/conf.d---vim webserver.conf
+<virtualhost *:443>
+servername www.gaurav.com
+serveradmin  root@172.25.1.30
+documentroot /var/www/html
+sslengine on
+sslcertificatefile  /etc/pki/tls/certs/server.crt
+sslcertificatekeyfile  /etc/pki/tls/private/server.key
+</virtualhost>
+
+yum install mod_ssl
+
+
+yum install openssl
+
+
+cd /etc/httpd/conf.d
+vim webserver.conf
+<virtualhost *:443>
+servername www.gaurav.com
+serveradmin root@ip
+documentroot /var/www/html
+sslengine on
+sslcertificatefile /etc/pki/tls/certs/server.crt
+sslcertificatekeyfile /etc/pki/tls/private/server.key
+</virtualhost>
+
+====================================
+<VirtualHost *:80>
+ServerName  www.site1.com
+ RewriteEngine On
+        RewriteCond %{HTTPS} off
+       RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
+DocumentRoot /var/www/html/site1/
+    ErrorLog /var/www/html/site1/error.log
+    CustomLog /var/www/html/site1/requests.log combined
+</VirtualHost>
+
+<VirtualHost *:443>
+ ServerName www.site1.com
+ SSLEngine on
+ SSLCertificateFile /etc/httpd/ssl/adspot.io.crt      ====> provide your ssl path  
+ SSLCertificateKeyFile /etc/httpd/ssl/private/adspot.io.key   ====>provide your ssl path  
+
+ SSLCertificateChainFile /etc/httpd/ssl/adspot.io.ca-bundle
+Alias "/asset" "/var/www/asset"
+ErrorLog  /var/log/httpd/adx.adspot.io_443-error.log
+CustomLog /var/log/httpd/adx.adspot.io_443-access.log combined
+ DocumentRoot "/var/www/white-labels-console/"
+ <Directory "/var/www/white-labels-console/">
+  Options +Indexes +FollowSymLinks +MultiViews
+  AllowOverride All
+  Order allow,deny
+  Allow from all
+ </Directory>
+
+<Directory "/var/www/asset">
+Options -Indexes +FollowSymLinks +MultiViews
+AllowOverride All
+Order allow,deny
+Allow from all
+</Directory>
+</VirtualHost>
+
+==================================================
+<virtualhost *:80>
+   servername www.login.vertoz.com
+   serveralias login.vertoz.com
+   documentroot /var/www/html/login.vertoz/
+   errorlog /var/www/html/login.vertoz/error.log
+   customlog /var/www/html/login.vertoz/requests.log combined
+</virtualhost>
+<virtualhost *:443>
+   servername www.login.vertoz.com
+   serveralias login.vertoz.com
+   documentroot /var/www/html/login.vertoz/
+   errorlog /var/www/html/login.vertoz/error.log
+   customlog /var/www/html/login.vertoz/requests.log combined
+   sslengine on
+   sslcertificatefile /etc/pki/tls/certs/server.crt
+   sslcertificatekeyfile /etc/pki/tls/private/server.key
+</virtualhost>
+
+
+
+=====================================
+<virtualhost *:80>
+   servername www.login.vertoz.com.com
+   serveralias login.vertoz.com.com
+   documentroot /var/www/html/login.vertoz.com/
+   errorlog /var/www/html/login.vertoz.com/error.log
+   customlog /var/www/html/login.vertoz.com/requests.log combined
+</virtualhost>
+<virtualhost *:443>
+   servername www.login.vertoz.com.com
+   serveralias login.vertoz.com.com
+   documentroot /var/www/html/login.vertoz.com/
+   errorlog /var/www/html/login.vertoz.com/error.log
+   customlog /var/www/html/login.vertoz.com/requests.log combined
+   sslengine on
+   sslcertificatefile /etc/pki/tls/certs/server.crt
+   sslcertificatekeyfile /etc/pki/tls/private/server.key
+</virtualhost>
+
+======================================================
+root@test tmp]# tar -xvzf ssl.tar.gz 
+etc/httpd/ssl/star_vertoz_com.crt
+etc/httpd/ssl/private/star_vertoz_com.key
+etc/httpd/ssl/vertoz-bundle.crt
+
+
